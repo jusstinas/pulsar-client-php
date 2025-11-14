@@ -82,6 +82,7 @@ class Message
      */
     protected $options = null;
 
+    protected ?string $partitionKey = null;
 
     /**
      * @param MessageIdData $id
@@ -102,7 +103,8 @@ class Message
                                 int               $batchNums = 1,
                                 int               $batchIdx = 0,
                                 int               $redeliveryCount = 0,
-                                ?MessageCollection $properties = null
+                                ?MessageCollection $properties = null,
+                                ?string $partitionKey = null,
     )
     {
         $this->id = $id;
@@ -114,6 +116,7 @@ class Message
         $this->batchIdx = $batchIdx;
         $this->redeliveryCount = $redeliveryCount;
         $this->properties = $properties;
+        $this->partitionKey = $partitionKey;
     }
 
     /**
@@ -196,6 +199,11 @@ class Message
         }
 
         return $results;
+    }
+
+    public function getPartitionKey(): ?string
+    {
+        return $this->partitionKey;
     }
 
     /**

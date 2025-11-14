@@ -122,7 +122,8 @@ class Packer
                 $batchNums,
                 $batchIdx,
                 $commandMessage->getRedeliveryCount(),
-                $properties
+                $properties,
+                $metadata->getPartitionKey()
             );
             $trackingValue += $batchIdx;
             $batchIdx += 1;
